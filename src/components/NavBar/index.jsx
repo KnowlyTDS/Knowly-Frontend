@@ -1,12 +1,62 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { AuthConsumer } from '@/auth';
 import './nav.css'
+
 export const NavBar = () => {
+    let navigate = useNavigate();
+    const [{ auth }, dispatch] = AuthConsumer();
+    let activeClass = 'text-red-700';
+
+    const logout = () => {
+        if(window.confirm('Are you sure you want to logout?')){
+            dispatch({ type: 'LOGOUT' })
+            navigate('/login')
+        } else {
+            return;
+        }
+
+    }
+
     return (
         <nav>
-            <h3 className=''>KNOWLY</h3>
+            <NavLink to='/' className=''>KNOWLY</NavLink>
             <div className="navlinks">
-                <NavLink to="/" className="hover:bg-gray-600 hover:px-2  hover:text-white">Home</NavLink>
-                <NavLink to="/about" className="hover:bg-gray-600 hover:px-2  hover:text-white">About</NavLink>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) => isActive && activeClass}
+                >
+                    Home
+                </NavLink>
+                <NavLink
+                    to="/about"
+                    className={({ isActive }) => isActive && activeClass}
+                >
+                    About
+                </NavLink>
+                {
+                    auth ? <button
+                        to="/login"
+                        onClick={logout}
+                        className={({ isActive }) => isActive && activeClass }
+                    >
+                        Logout
+                    </button>
+                        : <>
+                            <NavLink
+                                to="/login"
+                                className={({ isActive }) => isActive && activeClass}
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                to="/register"
+                                className={({ isActive }) => isActive && activeClass}
+                            >
+                                Register
+                            </NavLink>
+                        </>
+                }
+
             </div>
         </nav>
     )

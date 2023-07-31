@@ -2,8 +2,9 @@ nav {
     /* background-color: blueviolet; */
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 5px 0;
+    font-weight: 600;
 }
 
 
