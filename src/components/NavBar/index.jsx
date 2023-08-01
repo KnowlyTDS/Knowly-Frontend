@@ -7,8 +7,6 @@ import { useState } from 'react';
 
 export const NavBar = () => {
 
-    const mainColor = 'red-700';
-
     let navigate = useNavigate();
     const [{ auth }, dispatch] = AuthConsumer();
     const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +35,7 @@ export const NavBar = () => {
                 to={to}
                 id={type}
                 className={`
-                ${active && `border-b-2 border-${mainColor} pb-2`} 
+                ${active && `border-b-2 border-red-700 pb-2`} 
                 ${className} 
                 ${type === 'sesion' && 'px-3 py-1 rounded-md text-white hover:bg-red-800'}
                 `}
@@ -75,8 +73,8 @@ export const NavBar = () => {
         let tailwindClass;
 
         type === 'mobile'
-            ? tailwindClass = `text-${mainColor} bg-white hover:bg-red-600 hover:text-white `
-            : tailwindClass = `text-white bg-${mainColor} hover:bg-red-600`
+            ? tailwindClass = `text-red-700 bg-white hover:bg-red-600 hover:text-white hover:shadow-lg border-2 border-white`
+            : tailwindClass = `text-white bg-red-700 hover:bg-red-600`
 
         if (!auth) return <li>
             <BtnSesion
@@ -108,9 +106,11 @@ export const NavBar = () => {
                     <div className="header-wrapper flex items-center justify-between">
                         {/* header logo */}
                         <div className="header-logo">
-                            <h1 className="font-semibold text-black leading-relaxed">
-                                <NavLink to="/">KNOWLY</NavLink>
-                            </h1>
+                            {/* <h1 className="font-semibold text-black leading-relaxed"> */}
+                            <NavLink to="/" className='font-bold text-red-700 leading-relaxed'>
+                                KNOWLY
+                            </NavLink>
+                            {/* </h1> */}
                         </div>
 
                         {/* mobile toggle */}
@@ -123,7 +123,7 @@ export const NavBar = () => {
                                 }}
                             >
                                 <svg
-                                    className={`h-6 w-6 fill-current text-${mainColor} `}
+                                    className={`h-6 w-6 fill-current text-red-700 `}
                                     fill="none"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -156,10 +156,7 @@ export const NavBar = () => {
             </header>
 
             {/* mobile navbar */}
-            <div
-                className={`mobile-navbar fixed top-0 left-0 h-full bg-${mainColor} z-30 w-64 shadow-lg p-5 ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'
-                    }`}
-            >
+            <div className={`mobile-navbar fixed top-0 left-0 h-full bg-red-700 z-30 w-64 shadow-lg p-5 ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>
                 <div className="mobile-navbar-wrapper flex flex-col h-full justify-between">
                     <div className="mobile-navbar-links">
                         <ul className="flex flex-col space-y-4">
@@ -174,8 +171,7 @@ export const NavBar = () => {
                                             {text}
                                         </NavLink>
                                     </li>
-                                )
-                                )
+                                ))
                             }
                             <AuthButtons type='mobile' />
                         </ul>
