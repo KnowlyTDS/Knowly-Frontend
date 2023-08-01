@@ -1,6 +1,5 @@
 import { Form } from '@/components';
-import './index.scss'
-import { AuthConsumer } from '../../auth';
+import { AuthConsumer } from '@/auth';
 
 
 function Login() {

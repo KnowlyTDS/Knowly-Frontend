@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthConsumer } from "@/auth";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthConsumer, ACTIONS } from "@/auth";
 
 export const Form = ({ type }) => {
     const navigate = useNavigate();
@@ -17,10 +17,9 @@ export const Form = ({ type }) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch({ type: 'LOGIN' })
-        console.log(authed);
-        navigate('/dashboard')
+        dispatch({ type: ACTIONS.LOGIN })
 
+        navigate('/dashboard')
     }
 
     const onChange = (e) => {
@@ -42,6 +41,15 @@ export const Form = ({ type }) => {
                 <input
                     className="border-2 border-gray-300 p-1 rounded-md"
                     onChange={onChange} name="password" type="password" placeholder="Password" />
+                <Link to={type === 'login' ? '/register' : '/login'}
+                    className="text-center text-blue-500 hover:text-blue-700"
+                >
+                    {
+                        type === 'login'
+                            ? '¿No tienes cuenta? Registrate'
+                            : '¿Ya tienes cuenta? Inicia Sessión'
+                    }
+                </Link>
             </div>
             <button
                 type="submit"

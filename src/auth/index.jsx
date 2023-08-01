@@ -1,13 +1,18 @@
 import { createContext, useContext, useReducer } from "react"
 
+export const ACTIONS = {
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT'
+}
+
 const initialState = { user: 0, auth: false }
 export const AuthContext = createContext(initialState)
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case ACTIONS.LOGIN:
       return { ...state, user: 2, auth: true}
-    case 'LOGOUT':
+    case ACTIONS.LOGOUT:
       return { ...state, user: 0, auth: false }
     default:
       return state

@@ -1,5 +1,4 @@
-import { Form } from '../../components';
-import './index.scss'
+import { Form } from '@/components';
 function index() {
     return (
         <div id="register">
