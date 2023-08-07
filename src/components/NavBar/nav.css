@@ -7,6 +7,19 @@ nav {
     font-weight: 600;
 }
 
+.texto-con-borde {
+    color: #000;
+    /* Color del texto */
+    text-shadow:
+        -1px -1px 0 rgb(185 28 28 / 1),
+        /* Borde izquierdo y superior */
+        1px -1px 0 rgb(185 28 28 / 1),
+        /* Borde derecho y superior */
+        -1px 1px 0 rgb(185 28 28 / 1),
+        /* Borde izquierdo e inferior */
+        1px 1px 0 rgb(185 28 28 / 1);
+    /* Borde derecho e inferior */
+}
 
 h3 {
     /* background-color: white; */

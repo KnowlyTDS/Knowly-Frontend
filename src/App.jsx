@@ -1,10 +1,10 @@
 import './App.css'
 import { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 
 // Components
 import { Form } from '@/components';
-import { Home, About, Dashboard } from '@/pages';
+import { Home, About, Dashboard, Register} from '@/pages';
 import { Layout } from './Layout';
 
 export const App = () => {
@@ -17,7 +17,7 @@ export const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Form type='login' />} />
-          <Route path="/register" element={<Form type='register' />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<div>Not Found <Link to="/">Back to home</Link></div>} />
         </Route>
       </Routes>

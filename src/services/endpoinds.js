@@ -1,8 +1,12 @@
 const API_BASE = 'http://localhost:9090/api';
 
-export const ENDPOINTS = {
-    LOGIN: `${API_BASE}/loggin`,
-    REGISTER: `${API_BASE}/register`,
+export const API = {
+    SESSION: {
+       POST: {
+            LOGIN: `${API_BASE}/loggin`,
+            REGISTER: `${API_BASE}/register`,
+       }
+    }
     // USER: `${API_BASE}/user`,
     // LOGOUT: `${API_BASE}/logout`,
     // USER_BY_ID: (id) => `${API_BASE}/user/${id}`,

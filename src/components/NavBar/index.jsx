@@ -105,13 +105,16 @@ export const NavBar = () => {
                     {/* header wrapper */}
                     <div className="header-wrapper flex items-center justify-between">
                         {/* header logo */}
-                        <div className="header-logo">
+                        <div className="header-logo relative">
                             {/* <h1 className="font-semibold text-black leading-relaxed"> */}
-                            <NavLink to="/" className='font-bold text-red-700 leading-relaxed'>
-                                KNOWLY
+                            <span className="font-bold text-2xl bg-red-400 blur-xl text-red-700">knowly</span>
+                            <NavLink to="/" className=' absolute left-2 text-white leading-relaxed px-3'>
+                                knowly
                             </NavLink>
                             {/* </h1> */}
+
                         </div>
+                        {/* <p class="texto-con-borde">Este es un texto con borde.</p> */}
 
                         {/* mobile toggle */}
                         <div className="toggle md:hidden">
@@ -159,6 +162,10 @@ export const NavBar = () => {
             <div className={`mobile-navbar fixed top-0 left-0 h-full bg-red-700 z-30 w-64 shadow-lg p-5 ${isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>
                 <div className="mobile-navbar-wrapper flex flex-col h-full justify-between">
                     <div className="mobile-navbar-links">
+                        <NavLink to="/" className='left-2 text-white leading-relaxed px-3'>
+                            knowly
+                        </NavLink>
+                        <hr />
                         <ul className="flex flex-col space-y-4">
                             {
                                 links.map(({ href, text }) => (
@@ -183,45 +190,3 @@ export const NavBar = () => {
 
     )
 };
-
-{/* <nav>
-            <NavLink to='/' className=''>KNOWLY</NavLink>
-            <div className="navlinks">
-                <NavLink
-                    to="/"
-                    className={({ isActive }) => isActive && activeClass}
-                >
-                    Home
-                </NavLink>
-                <NavLink
-                    to="/about"
-                    className={({ isActive }) => isActive && activeClass}
-                >
-                    About
-                </NavLink>
-                {
-                    auth ? <button
-                        to="/login"
-                        onClick={logout}
-                        className={({ isActive }) => isActive && activeClass }
-                    >
-                        Logout
-                    </button>
-                        : <>
-                            <NavLink
-                                to="/login"
-                                className={({ isActive }) => isActive && activeClass}
-                            >
-                                Login
-                            </NavLink>
-                            <NavLink
-                                to="/register"
-                                className={({ isActive }) => isActive && activeClass}
-                            >
-                                Register
-                            </NavLink>
-                        </>
-                }
-
-            </div>
-        </nav> */}

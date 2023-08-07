@@ -14,3 +14,11 @@
     font-family: 'Roboto Slab', serif;
     transition: all 0.2s ease-in-out;
 }
+
+.required::after {
+    content: '*';
+    color: red;
+    /* Puedes ajustar el color según tus preferencias */
+    margin-left: 2px;
+    /* Ajusta el espaciado según tus preferencias */
+}
