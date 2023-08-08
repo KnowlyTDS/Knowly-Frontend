@@ -69,8 +69,8 @@ export const Form = ({ type }) => {
 
     // console.log(authed);
     return (
-        <div className="flex items-center justify-center bg-red-700 w-fit m-auto border-2 border-red-700 rounded-lg lg:bg-slate-900">
-            <form onSubmit={onSubmit} className="max-w-sm h-60 text-white rounded-lg flex flex-col justify-center items-center sm:bg-slate-900">
+        <div className="flex items-center justify-center bg-red-700 w-fit m-auto border-2 border-red-700 rounded-lg">
+            <form onSubmit={onSubmit} className="max-w-sm h-60 text-white rounded-lg flex flex-col justify-center items-center">
                 <h1 className="text-center font-bold text-2xl">{typeTitle}</h1>
                 <div className="flex flex-col p-2 px-20 border-collaps gap-2">
                     <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-6">

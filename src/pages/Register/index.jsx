@@ -73,7 +73,7 @@ export const Register = () => {
     };
 
     return (
-        <form className=' py-4 px-6 rounded-xl border-4 border-red-700 w-[60%] m-auto my-10' onSubmit={onSubmit}>
+        <form className=' py-4 px-6 rounded-xl border-4 border-red-700 w-[60%] max-md:w-[100%] m-auto my-10' onSubmit={onSubmit}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h1 className="text-base font-semibold leading-7 text-gray-900">Registro</h1>
@@ -233,8 +233,6 @@ export const Register = () => {
 
                     </div>
                 </div>
-
-
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
