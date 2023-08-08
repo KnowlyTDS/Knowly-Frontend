@@ -1,14 +1,14 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { AuthConsumer, ACTIONS } from '@/auth';
+import { AuthConsumer, ACTIONS } from '../../auth';
 import './nav.css'
 import { useState } from 'react';
-
+import { toast } from 'sonner';
 
 
 export const NavBar = () => {
 
     let navigate = useNavigate();
-    const [{ auth }, dispatch] = AuthConsumer();
+    const [{ user, isLoggedIn, isLoading, error }, dispatch] = AuthConsumer();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMobileNav = () => {
@@ -16,11 +16,11 @@ export const NavBar = () => {
     };
 
     const links = [{
-        href: '/dashboard',
-        text: 'Dashboard',
-    }, {
         href: '/home',
         text: 'Home',
+    }, {
+        href: '/dashboard',
+        text: 'Dashboard',
     }, {
         href: '/about',
         text: 'About',
@@ -76,7 +76,7 @@ export const NavBar = () => {
             ? tailwindClass = `text-red-700 bg-white hover:bg-red-600 hover:text-white hover:shadow-lg border-2 border-white`
             : tailwindClass = `text-white bg-red-700 hover:bg-red-600`
 
-        if (!auth) return <li>
+        if (!isLoggedIn) return <li>
             <BtnSesion
                 type='login'
                 onClick={onClick}

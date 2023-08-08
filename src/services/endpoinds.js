@@ -1,10 +1,12 @@
-const API_BASE = 'http://localhost:9090/api';
+const API_BASE = 'https://knowlyback-backendapi.azurewebsites.net/api';
 
 export const API = {
     SESSION: {
        POST: {
-            LOGIN: `${API_BASE}/loggin`,
-            REGISTER: `${API_BASE}/register`,
+        USER: {
+            LOGIN: `${API_BASE}/User/Loggin`,
+            REGISTER: `${API_BASE}/User/Register`,
+        }
        }
     }
     // USER: `${API_BASE}/user`,
