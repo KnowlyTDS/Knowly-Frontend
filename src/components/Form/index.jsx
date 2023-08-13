@@ -36,36 +36,33 @@ export const Form = ({ type }) => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        dispatch({ type: ACTIONS.LOGIN_REQUEST })
+        const data = {
+            user: 'ecampusano',
+            isLoggedIn: true,
+            isLoading: false,
+            error: null,
+        }
+        // dispatch({ type: ACTIONS.LOGIN_REQUEST })
 
-        axios
-            .post(API.SESSION.POST.USER.LOGIN, formState)
-            .then(({ data }) => {
-                console.log(data);
+        // axios
+        //     .post(API.SESSION.POST.USER.LOGIN, formState)
+        //     .then(({ data }) => {
+        //         console.log(data);
                 dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: data })
-                toast.success(`Bienvenido ${data.userName}!`)
-                navigate('/dashboard')
+                // toast.success(`Bienvenido ${data.userName}!`)
+                navigate('/dashboard', { replace: true })
 
-            })
-            .catch((error) => {
-                console.error(error);
-                dispatch({ type: ACTIONS.LOGIN_FAILURE, payload: error.response })
-                if (error.response) {
-                    toast.error(error.response.data)
-                }
-            })
+            // })
+            // .catch((error) => {
+            //     console.error({error});
+            //     dispatch({ type: ACTIONS.LOGIN_FAILURE, payload: error.response })
+            //     // if (error.response) {
+            //         toast.error(authed.error?.data?.message || 'Error al iniciar sesión')
+            //     // }
+            // })
     }
 
-    const onChangePassword = (e) => {
-        const { value } = e.target;
-        if (value.length > 0) {
-            setHasPass(true)
-        }
-        else {
-            setHasPass(false)
-        }
-
-    }
+    
 
     // console.log(authed);
     return (
@@ -104,7 +101,6 @@ export const Form = ({ type }) => {
                                     autoComplete="off"
                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                     onChange={onInputChange}
-                                    onChangeCapture={onChangePassword}
                                 />
                             </div>
                         </div>

@@ -3,6 +3,7 @@ import { AuthConsumer, ACTIONS } from '../../auth';
 import './nav.css'
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { ProfileDropdown } from './ProfileDropdown';
 
 
 export const NavBar = () => {
@@ -10,6 +11,7 @@ export const NavBar = () => {
     let navigate = useNavigate();
     const [{ user, isLoggedIn, isLoading, error }, dispatch] = AuthConsumer();
     const [isOpen, setIsOpen] = useState(false);
+
 
     const toggleMobileNav = () => {
         setIsOpen(!isOpen);
@@ -19,12 +21,23 @@ export const NavBar = () => {
         href: '/home',
         text: 'Home',
     }, {
-        href: '/dashboard',
-        text: 'Dashboard',
-    }, {
         href: '/about',
         text: 'About',
     }];
+
+    const isAuthedLinks = [
+        {
+            href: '/dashboard',
+            text: 'Dashboard',
+        }, {
+            href: '/calendar',
+            text: 'Calendar',
+        }, {
+            href: '/homework',
+            text: 'Homework',
+        }
+    ]
+
 
 
     const NavAnchor = ({ to, children, className, onClick, type }) => {
@@ -35,7 +48,7 @@ export const NavBar = () => {
                 to={to}
                 id={type}
                 className={`
-                ${active && `border-b-2 border-red-700 pb-2`} 
+                ${active ? `border-b-2 border-red-700 pb-2` : 'hover:bg-red-100 py-2 px-1 rounded-md'} 
                 ${className} 
                 ${type === 'sesion' && 'px-3 py-1 rounded-md text-white hover:bg-red-800'}
                 `}
@@ -45,17 +58,16 @@ export const NavBar = () => {
                 {children}
             </NavLink>
         )
-    };
+    }
+
 
     const BtnSesion = ({ children, className, type }) => {
 
         const handleSesion = () => {
             setIsOpen(false)
-            if (type === 'login') return navigate('/login');
-            if (!confirm('Are you sure you want to logout?')) return
-
+            if (type === 'login') return navigate('/login', { replace: true });
             dispatch({ type: ACTIONS.LOGOUT })
-            navigate('/login')
+            navigate('/login', { replace: true })
 
         };
 
@@ -86,7 +98,7 @@ export const NavBar = () => {
             </BtnSesion>
         </li>
 
-        return <li>
+        if (type === 'mobile') return <li>
             <BtnSesion
                 type='logout'
                 onClick={onClick}
@@ -95,26 +107,28 @@ export const NavBar = () => {
                 Logout
             </BtnSesion>
         </li>
+
+
+        return <li><ProfileDropdown />
+        </li>
     }
+
+    const linksRender = isLoggedIn ? isAuthedLinks : links;
 
     return (
         <>
             <header className="header my-5">
                 {/* container */}
-                <div className="container px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
+                <div className="container  sm:px-8 lg:px-16 xl:px-20 mx-auto">
                     {/* header wrapper */}
                     <div className="header-wrapper flex items-center justify-between">
                         {/* header logo */}
                         <div className="header-logo relative">
-                            {/* <h1 className="font-semibold text-black leading-relaxed"> */}
                             <span className="font-bold text-2xl bg-red-400 blur-xl text-red-700">knowly</span>
                             <NavLink to="/" className=' absolute left-2 text-white leading-relaxed px-3'>
                                 knowly
                             </NavLink>
-                            {/* </h1> */}
-
                         </div>
-                        {/* <p class="texto-con-borde">Este es un texto con borde.</p> */}
 
                         {/* mobile toggle */}
                         <div className="toggle md:hidden">
@@ -122,7 +136,6 @@ export const NavBar = () => {
                                 onClick={toggleMobileNav}
                                 onKeyDown={(e) => {
                                     e.key === 'Escape' && setIsOpen(false)
-                                    // console.log(e.key)
                                 }}
                             >
                                 <svg
@@ -141,14 +154,17 @@ export const NavBar = () => {
 
                         {/* Navbar */}
                         <nav className={`navbar hidden md:block ${isOpen ? 'block' : 'hidden'}`}>
-                            <ul className="flex space-x-3 items-center text-sm font-semibold">
+                            <ul className="flex gap-2 items-center text-sm font-semibold">
                                 {
-                                    links.map(({ href, text }) => <li key={text}>
-                                        <NavAnchor to={href}>
-                                            {text}
-                                        </NavAnchor>
-                                    </li>
-                                    )
+                                    linksRender.map(({ href, text }) => {
+                                        return (
+                                            <li key={text}>
+                                                <NavAnchor to={href}>
+                                                    {text}
+                                                </NavAnchor>
+                                            </li>
+                                        )
+                                    })
                                 }
                                 <AuthButtons />
                             </ul>
@@ -168,7 +184,7 @@ export const NavBar = () => {
                         <hr />
                         <ul className="flex flex-col space-y-4">
                             {
-                                links.map(({ href, text }) => (
+                                linksRender.map(({ href, text }) => (
                                     <li key={text}>
                                         <NavLink
                                             to={href}
