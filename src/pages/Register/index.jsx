@@ -33,7 +33,7 @@ const initialState = {
 export const Register = () => {
     const [{ user, isLoggedIn, isLoading, error }, dispatch] = AuthConsumer();
 
-    console.log({user, isLoggedIn, isLoading, error});
+    // console.log({user, isLoggedIn, isLoading, error});
 
     const navigate = useNavigate();
 

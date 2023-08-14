@@ -1,13 +1,12 @@
-import './App.css'
 import { Suspense } from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 // Components
 import { Form } from '@/components';
-import { Home, About, Dashboard, Register, Profile, Calendar } from './pages';
-import { Layout } from './Layout';
+import { Layout } from '@/Layout'; 
+import { Home, About, Dashboard, Register, Profile, Calendar, Course, NotFound } from './pages';
 import { RequireAuth } from './auth/RequireAuth';
-import { Course } from './pages/Dashboard/sections';
+import './App.css'
 
 
 
@@ -27,7 +26,7 @@ export const App = () => {
           <Route path="/profile/:username" element={<RequireAuth><Profile /></RequireAuth>} />
           <Route path="/course/:courserId" element={<RequireAuth><Course /></RequireAuth>} />
           <Route path="/calendar" element={<RequireAuth><Calendar /></RequireAuth>} />
-          <Route path="*" element={<div>Not Found <Link to="/" className='text-blue-700 bg-red-100 p-2 rounded-full'>Back to home</Link></div>} />
+          <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>
     </Suspense>

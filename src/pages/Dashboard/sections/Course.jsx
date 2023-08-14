@@ -67,7 +67,7 @@ const {courserId} = useParams()
 
     {
         course && (
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center mt-14">
                 <h1 className="text-2xl">{course.title}</h1>
                 <h4 className="text-gray-500">{course.teacher}</h4>
                 <div className="max-w-sm rounded overflow-hidden shadow-l relative m-10">

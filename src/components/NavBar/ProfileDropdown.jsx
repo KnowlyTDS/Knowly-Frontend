@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 
 export const ProfileDropdown = () => {
     const [{ user }, dispatch] = AuthConsumer();
+    const { username } = !!user && user;
 
     let navigate = useNavigate();
 
@@ -47,7 +48,7 @@ export const ProfileDropdown = () => {
 
                             {({ active }) => (
                                 <Link
-                                    to={`/profile/${user?.user}`}
+                                    to={`/profile/${username}`}
                                     className={classNames(active ? 'bg-gray-100' : '', 'px-4 py-2 text-sm text-gray-700 flex items-center gap-3')}
                                 >  <img
                                         className="h-8 w-8 rounded-full"
@@ -57,7 +58,7 @@ export const ProfileDropdown = () => {
                                     <div className="flex flex-col p-0 m-0 relative">
                                         <span className="font-semibold m-0 p-0 absolute top-[-18px]">Profile</span>
                                         <small className='absolute top-[-4px]'>
-                                            @{user?.user}
+                                            @{username}
                                         </small>
 
                                     </div>

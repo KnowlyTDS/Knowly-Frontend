@@ -8,7 +8,15 @@ export const API = {
             REGISTER: `${API_BASE}/User/Register`,
         }
        }
-    }
+    }, 
+    USER: {
+        PUT: {
+            EDDIT: `${API_BASE}/User/Edit`,
+        }
+    },
+
+
+
     // USER: `${API_BASE}/user`,
     // LOGOUT: `${API_BASE}/logout`,
     // USER_BY_ID: (id) => `${API_BASE}/user/${id}`,

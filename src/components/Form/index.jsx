@@ -26,34 +26,35 @@ export const Form = ({ type }) => {
         if (authed.isLoggedIn) dispatch({ type: ACTIONS.LOGOUT })
     }, [])
 
-    const typeURL = type === "login" ? "login" : "register";
-    const typeTitle = type === "login" ? "Iniciar Sesión" : "Registrarse";
+const typeURL = type === "login" ? "login" : "register";
+const typeTitle = type === "login" ? "Iniciar Sesión" : "Registrarse";
 
-    const togglePassword = () => {
-        setTypePassword(typePassword === 'password' ? 'text' : 'password')
+const togglePassword = () => {
+    setTypePassword(typePassword === 'password' ? 'text' : 'password')
+}
+
+const onSubmit = (e) => {
+    e.preventDefault();
+    
+    const data = { 
+        id: 1,
+        username: 'ecampusano', 
+        name: 'Emmanuel Aaron Popa Campusano',
+        email: 'emmanuelpopa@gmail.com',
+        description: 'Estudiante de Ingeniería en Sistemas',
     }
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        const data = {
-            user: 'ecampusano',
-            isLoggedIn: true,
-            isLoading: false,
-            error: null,
-        }
-        // dispatch({ type: ACTIONS.LOGIN_REQUEST })
-
-        // axios
-        //     .post(API.SESSION.POST.USER.LOGIN, formState)
-        //     .then(({ data }) => {
+    // dispatch({ type: ACTIONS.LOGIN_REQUEST })
+    
+    // axios
+    //     .post(API.SESSION.POST.USER.LOGIN, formState)
+    //     .then(({ data }) => {
         //         console.log(data);
-                dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: data })
-                // toast.success(`Bienvenido ${data.userName}!`)
-                navigate('/dashboard', { replace: true })
-
-            // })
-            // .catch((error) => {
+        dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: data })
+        // toast.success(`Bienvenido ${data.userName}!`)
+        navigate('/dashboard', { replace: true })
+        
+        // })
+        // .catch((error) => {
             //     console.error({error});
             //     dispatch({ type: ACTIONS.LOGIN_FAILURE, payload: error.response })
             //     // if (error.response) {
@@ -61,6 +62,7 @@ export const Form = ({ type }) => {
             //     // }
             // })
     }
+
 
     
 

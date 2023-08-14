@@ -8,6 +8,8 @@ export const ACTIONS = {
   REGISTER_REQUEST: 'REGISTER_REQUEST',
   REGISTER_SUCCESS: 'REGISTER_SUCCESS',
   REGISTER_FAILURE: 'REGISTER_FAILURE',
+  EDDIT_REQUEST: 'EDDIT_REQUEST',
+  EDDIT_SUCCESS: 'EDDIT_SUCCESS',
 }
 
 const initialState = {
@@ -20,6 +22,7 @@ const initialState = {
 export const AuthContext = createContext(initialState)
 
 export const reducer = (state = initialState, action) => {
+
   // console.log(action);
   switch (action.type) {
     case ACTIONS.LOGIN_REQUEST:
@@ -43,7 +46,11 @@ export const reducer = (state = initialState, action) => {
     case ACTIONS.REGISTER_FAILURE:
       return { ...state, isLoading: false, isLoggedIn: false, error: action.payload };
 
+    case ACTIONS.EDDIT_REQUEST:
+      return { ...state, isLoading: true, error: null };
 
+    case ACTIONS.EDDIT_SUCCESS:
+      return { ...state, isLoading: false, isLoggedIn: true, user: action.payload, error: null };
     default:
       return state;
   }

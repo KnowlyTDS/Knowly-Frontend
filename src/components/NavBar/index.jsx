@@ -9,9 +9,9 @@ import { ProfileDropdown } from './ProfileDropdown';
 export const NavBar = () => {
 
     let navigate = useNavigate();
-    const [{ user, isLoggedIn, isLoading, error }, dispatch] = AuthConsumer();
+    const [{user, isLoggedIn}, dispatch] = AuthConsumer();
     const [isOpen, setIsOpen] = useState(false);
-
+    // const { username } = !!user && user;
 
     const toggleMobileNav = () => {
         setIsOpen(!isOpen);
