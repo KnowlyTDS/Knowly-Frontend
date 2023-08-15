@@ -1,11 +1,11 @@
-const API_BASE = 'https://knowlyback-backendapi.azurewebsites.net/api';
+const API_BASE = 'https://knowlyback-backendapi.azurewebsites.net/api/v1';
 
 export const API = {
     SESSION: {
        POST: {
         USER: {
-            LOGIN: `${API_BASE}/User/Loggin`,
-            REGISTER: `${API_BASE}/User/Register`,
+            LOGIN: `${API_BASE}/Account/authenticate`,
+               REGISTER: `${API_BASE}/Account/registeadmin`,
         }
        }
     }, 
@@ -14,7 +14,13 @@ export const API = {
             EDDIT: `${API_BASE}/User/Edit`,
         }
     },
-
+    COURSES: {
+        GET: {
+            ALL: `${API_BASE}/cursos`,
+            BY_ID: (id) => `${API_BASE}/Course/${id}`,
+            STUDENTS: (courseId, id) => `${API_BASE}/${courseId}/GetStudents/${id}`,
+    }
+    },
 
 
     // USER: `${API_BASE}/user`,

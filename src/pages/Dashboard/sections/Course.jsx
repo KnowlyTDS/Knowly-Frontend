@@ -28,6 +28,15 @@ const {courserId} = useParams()
             image: 'https://picsum.photos/200',
             link: '/course/3',
             teacher: 'Fernando Figueroa'
+        },
+        {
+            id: 4,
+            title: 'Introducción al Desarrollo de Aplicaciones Móviles(Virtual) ',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+            image: 'https://picsum.photos/400',
+            link: '/course/4',
+            teacher: 'Julio Hernández'
+
         }
     ]
 

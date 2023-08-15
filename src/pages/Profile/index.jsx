@@ -21,11 +21,16 @@ export const Profile = () => {
     const handleOpenModal = () => {
         setIsModalOpen(true);
 
+        document.body.classList.add("bg-gray-300");
+
+
         
     };
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
+
+        document.body.classList.remove("bg-gray-300");
     };
 
 
@@ -47,11 +52,11 @@ export const Profile = () => {
                         style={{ display: isImageLoading ? "none" : "block" }}
                     />
 
-                    <div className="flex-auto flex w-full justify-center mt-4 absolute bottom-0">
+                    {/* <div className="flex-auto flex w-full justify-center mt-4 absolute bottom-0">
                         <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
                             New Picture
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="flex-auto p-6">
                             @{username}

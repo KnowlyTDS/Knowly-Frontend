@@ -36,7 +36,7 @@ export const CoursesSection = () => {
             title: 'Introducción al Desarrollo de Aplicaciones Móviles(Virtual) ',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
             image: 'https://picsum.photos/400',
-            link: '/course/3',
+            link: '/course/4',
             teacher: 'Julio Hernández'
 
         }
@@ -53,7 +53,7 @@ export const CoursesSection = () => {
     };
 
     return (
-        <section className=" flex flex-col justify-center items-center ">
+        <section className="mb-5 flex flex-col justify-center items-center ">
             <h1 className="text-2xl mb-10">Vista general de curso</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:justify-center gap-4">
                 {
@@ -61,7 +61,7 @@ export const CoursesSection = () => {
                         <Link to={course.link} key={index} className="max-w-sm rounded overflow-hidden shadow-l relative">
                             <div className="absolute w-full h-[40%]">
                                 {
-                                    isImageLoading && <SpinnerGeneral />
+                                    !isImageLoading && <SpinnerGeneral />
                                 }
                                 <img
                                     className="w-full"
@@ -69,7 +69,7 @@ export const CoursesSection = () => {
                                     alt="Sunset in the mountains"
                                     loading="lazy"
                                     onLoad={handleImageLoad}
-                                    style={{ display: isImageLoading ? "none" : "block" }}
+                                    style={{ display: !isImageLoading ? "none" : "block" }}
                                 />
                                 <div className="absolute top-0 right-0 bg-red-700 text-white p-1 rounded-bl">
                                     <span className="material-symbols-outlined text-xl">favorite</span>
@@ -77,7 +77,7 @@ export const CoursesSection = () => {
                             </div>
 
 
-                            <div className="px-6 py-4 mt-[70%]">
+                            <div className="px-6 py-4 mt-[100%]">
                                 <div className="font-bold text-lg mb-2 text-nowrap truncate">{course.title}</div>
                                 <p className="text-gray-700 text-base">
                                     {course.description}

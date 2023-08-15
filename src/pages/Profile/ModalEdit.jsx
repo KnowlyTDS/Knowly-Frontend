@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { ACTIONS, AuthConsumer } from "../../auth";
 import { API } from "../../services";
+import { SpinnerGeneral } from "../../components/Spinner";
+import { toast } from "sonner";
 
 export const ModalEdit = ({ isModalOpen, handleCloseModal }) => {
     const [{ user: { description, username, name } }, dispatch] = AuthConsumer();
+    const [isImageLoading, setIsImageLoading] = useState(true);
+
+
+    const handleImageLoad = (e) => {
+        setIsImageLoading(false);
+
+    };
 
     const [dataEditted, setDataEditted] = useState({
         username,
@@ -28,6 +37,13 @@ export const ModalEdit = ({ isModalOpen, handleCloseModal }) => {
         dispatch({ type: ACTIONS.EDDIT_SUCCESS, payload: dataEditted })
         handleCloseModal();
 
+    }
+
+    const onNewImge = async ({img}) => {
+        // upload image from pc 
+        // const { data } = await axios.put(API.USER.PUT.EDDIT, img);
+
+        toast.message("Modulo en desarrollo")
     }
 
 
@@ -72,6 +88,30 @@ export const ModalEdit = ({ isModalOpen, handleCloseModal }) => {
                                 </div>
                                 {/* Modal body */}
                                 <div className="p-6 space-y-6">
+                                    {/* Profile photo */}
+                                    <div className="flex flex-col items-center justify-center">
+                                        <div className="flex-shrink-0 w-20 h-20 rounded-full overflow-hidden relative">
+
+                                            {
+                                                isImageLoading && <SpinnerGeneral />
+                                            }
+                                            <img
+                                                src="https://avatars.githubusercontent.com/u/55479192?v=4"
+                                                alt=""
+                                                className="inset-0 rounded-full w-full h-full object-cover filter grayscale hover:grayscale-0 transition duration-150 ease-in-out"
+                                                loading="lazy"
+                                                onLoad={handleImageLoad}
+                                                style={{ display: isImageLoading ? "none" : "block" }}
+                                                onClick={onNewImge}
+                                            />
+                                            <span 
+                                                className="absolute top-8 left-8 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-semibold"
+                                            >+</span>                
+                                        </div>
+                                    </div>
+
+
+
                                     {/* Usuario */}
                                     <div className="flex flex-col">
                                         <label htmlFor="username" className="text-sm font-medium text-gray-900 dark:text-gray-50">
